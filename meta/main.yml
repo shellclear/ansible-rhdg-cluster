@@ -1,0 +1,9 @@
+galaxy_info:
+  author: Paulo Pacifico
+  description: Deploy/Destroy RHDG operator y cluster
+  company: RedHat
+  license: license (GPL-2.0-or-later, MIT, etc)
+  min_ansible_version: 2.12
+  galaxy_tags:
+    - Redhat
+    - infinispan

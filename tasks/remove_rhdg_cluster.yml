@@ -1,0 +1,10 @@
+- name: Remove rhdg cluster object via api # The module community.okd.k8s dont remove the object type Infinispan.
+  uri:
+    url: "{{ ocp_url }}/apis/infinispan.org/v1/namespaces/{{ cluster_namespace }}/infinispans/{{ cluster_name }}"
+    method: DELETE
+    status_code: 200, 404
+    validate_certs: "{{ validate_certs }}"
+    headers:
+      Content-Type: application/json
+      Authorization: Bearer {{ openshift_auth_results['openshift_auth']['api_key'] | mandatory }}
+      Accept: application/json

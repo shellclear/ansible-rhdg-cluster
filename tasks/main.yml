@@ -1,0 +1,23 @@
+# tasks file for rhdg_cluster
+- name: Import get_ocp_api_key.yml tasks
+  ansible.builtin.import_tasks: get_ocp_api_key.yml
+
+- name: Import install_rhdg_operator.yml tasks
+  ansible.builtin.import_tasks: install_rhdg_operator.yml
+  when:
+    - rhdg_operator_state != 'absent'
+
+- name: Import install_rhdg_cluster.yml tasks
+  ansible.builtin.import_tasks: install_rhdg_cluster.yml
+  when:
+    - rhdg_cluster_state != 'absent'
+
+- name: Import remove_rhdg_cluster.yml tasks
+  ansible.builtin.import_tasks: remove_rhdg_cluster.yml
+  when:
+    - rhdg_cluster_state == 'absent'
+
+- name: Import remove_rhdg_operator.yml tasks
+  ansible.builtin.import_tasks: remove_rhdg_operator.yml
+  when:
+    - rhdg_operator_state == 'absent'

@@ -1,0 +1,7 @@
+---
+- name: RHDG Cluster
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  roles:
+    - rhdg_cluster

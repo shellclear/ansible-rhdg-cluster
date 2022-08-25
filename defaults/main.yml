@@ -1,0 +1,11 @@
+---
+# defaults file for rhdg_cluster
+validate_certs: true
+operator_namespace: openshift-operators
+install_plan_approval: Automatic
+rhdg_operator_state: present
+rhdg_cluster_state: present
+env: lab
+cluster_namespace: rhdg-{{ env }}
+cluster_name: rhdg-{{ env }}
+extra_jvm_opts: "-Xlog:gc*=info:file=/tmp/gc.log:time,level,tags,uptimemillis:filecount=10,filesize=1m -XX:-UseParallelOldGC -XX:+UseG1GC -XX:MaxGCPauseMillis=400"

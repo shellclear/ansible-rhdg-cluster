@@ -1,0 +1,7 @@
+- name: Log in ocp (obtain access token)
+  community.okd.openshift_auth:
+    host: "{{ ocp_url | mandatory }}"
+    username: "{{ ocp_admin_username | mandatory }}"
+    password: "{{ ocp_admin_password | mandatory }}"
+    validate_certs: "{{ validate_certs }}"
+  register: openshift_auth_results

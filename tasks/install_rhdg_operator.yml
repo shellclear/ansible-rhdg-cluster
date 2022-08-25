@@ -1,0 +1,15 @@
+- name: Process the rhdg operator template file and create the resources
+  community.okd.openshift_process:
+    host: "{{ ocp_url | mandatory }}"
+    api_key: "{{ openshift_auth_results['openshift_auth']['api_key'] | mandatory }}"
+    validate_certs: "{{ validate_certs }}"
+    parameters:
+      OPERATOR_NAMESPACE: "{{ operator_namespace }}"
+      PLAN_APPROVAL: "{{ install_plan_approval }}"
+    src: ./roles/rhdg_cluster/files/rhdg-operator.yml # The default role path doesn't work.
+    state: "{{ rhdg_operator_state }}"
+  register: rendered_resources
+
+- name: Pause for 1 minutes to build operator objects
+  ansible.builtin.pause:
+    minutes: 1

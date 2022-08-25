@@ -1,0 +1,21 @@
+- name: Remove rhdg operator subscription object
+  community.okd.k8s:
+    host: "{{ ocp_url | mandatory }}"
+    api_key: "{{ openshift_auth_results['openshift_auth']['api_key'] | mandatory}}"
+    validate_certs: "{{ validate_certs }}"
+    state: "{{ rhdg_operator_state }}"
+    api_version: operators.coreos.com/v1alpha1
+    kind: Subscription
+    namespace: "{{ operator_namespace }}"
+    name: datagrid-operator
+
+- name: Remove rhdg operator clusterserviceversion object (skipped if rhdg_operator_cluster_service_version_running is not defined)
+  community.okd.k8s:
+    host: "{{ ocp_url | mandatory }}"
+    api_key: "{{ openshift_auth_results['openshift_auth']['api_key'] | mandatory }}"
+    validate_certs: "{{ validate_certs | default('true') }}"
+    state: "{{ rhdg_operator_state }}"
+    api_version: operators.coreos.com/v1alpha1
+    kind: ClusterServiceVersion
+    namespace: "{{ operator_namespace }}"
+    name: "datagrid-operator.v{{ rhdg_operator_cluster_service_version_running }}"

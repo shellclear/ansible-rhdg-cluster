@@ -1,5 +1,5 @@
 - name: Remove rhdg cluster object via api # The module community.okd.k8s dont remove the object type Infinispan.
-  uri:
+  ansible.builtin.uri:
     url: "{{ ocp_url }}/apis/infinispan.org/v1/namespaces/{{ cluster_namespace }}/infinispans/{{ cluster_name }}"
     method: DELETE
     status_code: 200, 404

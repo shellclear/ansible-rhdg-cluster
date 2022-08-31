@@ -21,7 +21,7 @@ Role Variables
 
 | Name                                           | Default value                                           |                                                               |
 |------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------|
-| ocp_url                                        | UNDEF                                                   | Specify OCP cluster url                                       |
+| ocp_url                                        | MANDATORY                                               | Specify OCP cluster url                                       |
 | ocp_admin_username                             | MANDATORY                                               | Specify OCP username                                          |
 | ocp_admin_password                             | MANDATORY                                               | Specify OCP password                                          |
 | validate_certs                                 | true                                                    | Specify if OCP has a valid certificate                        |
@@ -85,7 +85,7 @@ Example Ansible Playbook Command:
 ---------------------------------
 
 ```command
-ansible-playbook -e @./extraVars.yml -e @secrets --ask-vault-password playbook.yml
+ansible-playbook -e @./extraVars.yml -e @secrets.yml --ask-vault-password playbook.yml
 ```
 
 [![asciicast](https://asciinema.org/a/dmhZ2msxMD0ZyVpzjLJtpSoO8.svg)](https://asciinema.org/a/dmhZ2msxMD0ZyVpzjLJtpSoO8)
